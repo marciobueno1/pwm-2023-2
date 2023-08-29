@@ -1,0 +1,27 @@
+h1 {
+  color: blueviolet;
+}
+
+h1:hover {
+  color: chartreuse;
+  border: dashed;
+}
+
+table {
+  border-color: blue;
+  border-style: double;
+}
+
+.tblDados {
+  border-style: dashed;
+}
+
+p::first-letter {
+  color: #ff0000;
+  font-size: xx-large;
+}
+
+p::first-line {
+  color: #0000ff;
+  font-variant: small-caps;
+}
