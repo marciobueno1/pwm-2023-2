@@ -18,3 +18,8 @@ const atualizarContador = () => {
   h2Contador.innerHTML = `<em>${contador}</em>`;
   btDecrementar.disabled = contador === 0;
 };
+
+// function atualizarContador() {
+//   h2Contador.innerHTML = `<em>${contador}</em>`;
+//   btDecrementar.disabled = contador === 0;
+// };
