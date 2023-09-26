@@ -2,8 +2,9 @@ const listaPessoas = document.getElementById("listaPessoas");
 const btAnterior = document.getElementById("btAnterior");
 const btProxima = document.getElementById("btProxima");
 
-const exibirLista = (lista) => {
+const exibirLista = (lista, start) => {
   listaPessoas.innerHTML = "";
+  listaPessoas.start = start;
   for (let i = 0; i < lista.length; ++i) {
     const li = document.createElement("li");
     const text = document.createTextNode(
@@ -19,13 +20,13 @@ const configurarBotoes = (data) => {
 
   btAnterior.disabled = previous === null;
   btAnterior.onclick = () => {
-    fetchAPI(previous);
+    fetchAPI2(previous);
     btAnterior.disabled = true;
   };
 
   btProxima.disabled = next === null;
   btProxima.onclick = () => {
-    fetchAPI(next);
+    fetchAPI2(next);
     btProxima.disabled = true;
   };
 };
@@ -41,4 +42,18 @@ const fetchAPI = (url) => {
     });
 };
 
-fetchAPI("https://swapi.dev/api/people/?page=1");
+const fetchAPI2 = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const start = Number(url.split("=")[1]) * 10 - 9;
+    console.log("start = ", start);
+    exibirLista(data.results, start);
+    configurarBotoes(data);
+  } catch (error) {
+    console.log("error = ", error);
+    alert("erro ao se conectar a API");
+  }
+};
+
+fetchAPI2("https://swapi.dev/api/people/?page=1");
